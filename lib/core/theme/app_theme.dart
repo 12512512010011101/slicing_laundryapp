@@ -28,11 +28,14 @@ class AppTheme {
               fontSize: 14, fontWeight: FontWeight.w600),
         ),
       ),
-      inputDecorationTheme: InputDecorationTheme(
+            inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.white,
         contentPadding: const EdgeInsets.symmetric(horizontal: 14),
-        hintStyle: GoogleFonts.poppins(fontSize: 13, color: AppColors.hint),
+        hintStyle: GoogleFonts.poppins(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: AppColors.placeholder),
         border: OutlineInputBorder(
             borderRadius: radius,
             borderSide: const BorderSide(color: AppColors.border)),
@@ -41,8 +44,7 @@ class AppTheme {
             borderSide: const BorderSide(color: AppColors.border)),
         focusedBorder: OutlineInputBorder(
             borderRadius: radius,
-            borderSide:
-                const BorderSide(color: AppColors.primary, width: 1.5)),
+            borderSide: const BorderSide(color: AppColors.primary)),
       ),
     );
   }
