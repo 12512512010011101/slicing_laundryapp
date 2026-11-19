@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'register_screen.dart';
 import '../core/app_icons.dart';
 import '../core/theme/app_colors.dart';
 import '../widgets/app_text_field.dart';
@@ -22,7 +23,7 @@ class LoginScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       const SizedBox(height: 40),
-                      Image.asset('assets/images/logo.png', height: 120),
+                      Image.asset('assets/images/logo.png', height: 160),
                       const SizedBox(height: 8),
                       const Text(
                         'Selamat datang!',
@@ -58,7 +59,7 @@ class LoginScreen extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerRight,
                         child: InkWell(
-                          onTap: () {}, // TODO: ke layar lupa password
+                          onTap: () {}, 
                           child: const Text(
                             'Lupa password?',
                             style: TextStyle(
@@ -107,8 +108,12 @@ class LoginScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.grey),
                           ),
-                          InkWell(
-                            onTap: () {}, // TODO: ke layar register
+                                                    InkWell(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => const RegisterScreen()),
+                            ),
                             child: const Text(
                               'Daftar dulu',
                               style: TextStyle(
