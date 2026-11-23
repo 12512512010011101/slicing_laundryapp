@@ -5,6 +5,7 @@ import '../core/theme/app_colors.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/auth_widgets.dart';
 import '../widgets/primary_button.dart';
+import 'forgot_password_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -21,7 +22,8 @@ class LoginScreen extends StatelessWidget {
               child: IntrinsicHeight(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.pageMargin),
+                    horizontal: AppSpacing.pageMargin,
+                  ),
                   child: Column(
                     children: [
                       const AuthHeader(
@@ -47,15 +49,19 @@ class LoginScreen extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerRight,
                         child: InkWell(
-                          onTap: () {
-                            // TODO: ke layar lupa password
-                          },
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const ForgotPasswordScreen(),
+                            ),
+                          ),
                           child: const Text(
                             'Lupa password?',
                             style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.primary),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.primary,
+                            ),
                           ),
                         ),
                       ),
@@ -77,7 +83,8 @@ class LoginScreen extends StatelessWidget {
                         onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => const RegisterScreen()),
+                            builder: (_) => const RegisterScreen(),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 37),

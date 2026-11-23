@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme/app_colors.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AuthHeader extends StatelessWidget {
   final String title;
@@ -38,7 +39,10 @@ class AuthHeader extends StatelessWidget {
         Text(
           title,
           style: const TextStyle(
-              fontSize: 20, fontWeight: FontWeight.w700, color: Colors.black),
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            color: Colors.black,
+          ),
         ),
         const SizedBox(height: 3),
         ConstrainedBox(
@@ -47,13 +51,36 @@ class AuthHeader extends StatelessWidget {
             subtitle,
             textAlign: TextAlign.center,
             style: const TextStyle(
-                fontSize: 16,
-                height: 1.3,
-                fontWeight: FontWeight.w600,
-                color: AppColors.grey),
+              fontSize: 16,
+              height: 1.3,
+              fontWeight: FontWeight.w600,
+              color: AppColors.grey,
+            ),
           ),
         ),
       ],
+    );
+  }
+}
+
+class AuthBackButton extends StatelessWidget {
+  const AuthBackButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 53, left: 4),
+        child: InkWell(
+          onTap: () => Navigator.pop(context),
+          child: SvgPicture.asset(
+            'assets/icons/arrow_left.svg',
+            width: 16,
+            height: 12,
+          ),
+        ),
+      ),
     );
   }
 }
@@ -73,9 +100,10 @@ class OrDivider extends StatelessWidget {
             child: Text(
               'atau',
               style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.placeholder),
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: AppColors.placeholder,
+              ),
             ),
           ),
           Expanded(child: Divider(color: AppColors.placeholder, height: 1)),
@@ -105,18 +133,20 @@ class AuthFooter extends StatelessWidget {
         Text(
           '$question ',
           style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: AppColors.grey),
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: AppColors.grey,
+          ),
         ),
         InkWell(
           onTap: onTap,
           child: Text(
             action,
             style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: AppColors.primary),
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: AppColors.primary,
+            ),
           ),
         ),
       ],
