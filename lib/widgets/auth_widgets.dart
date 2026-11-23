@@ -4,39 +4,55 @@ import '../core/theme/app_colors.dart';
 class AuthHeader extends StatelessWidget {
   final String title;
   final String subtitle;
-  final double logoHeight;
-  final double topspacing;
+  final double titleTop;
+  final double logoTop;
+  final double subtitleWidth;
 
   const AuthHeader({
     super.key,
     required this.title,
     required this.subtitle,
-    this.logoHeight = 120,
-    this.topspacing = 40,
+    this.titleTop = 157,
+    this.logoTop = -30,
+    this.subtitleWidth = 250,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 40),
-        Image.asset('assets/images/logo.png', height: logoHeight),
-        const SizedBox(height: 8),
+        SizedBox(
+          height: titleTop,
+          width: double.infinity,
+          child: Stack(
+            clipBehavior: Clip.none,
+            alignment: Alignment.topCenter,
+            children: [
+              Positioned(
+                top: logoTop,
+                child: Image.asset('assets/images/logo.png', width: 216),
+              ),
+            ],
+          ),
+        ),
         Text(
           title,
           style: const TextStyle(
               fontSize: 20, fontWeight: FontWeight.w700, color: Colors.black),
         ),
-        const SizedBox(height: 6),
-        Text(
-          subtitle,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: AppColors.grey),
+        const SizedBox(height: 3),
+        ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: subtitleWidth),
+          child: Text(
+            subtitle,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+                fontSize: 16,
+                height: 1.3,
+                fontWeight: FontWeight.w600,
+                color: AppColors.grey),
+          ),
         ),
-        const SizedBox(height: 24),
       ],
     );
   }
@@ -47,21 +63,24 @@ class OrDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      children: [
-        Expanded(child: Divider(color: AppColors.placeholder)),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Text(
-            'atau',
-            style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: AppColors.placeholder),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 24),
+      child: Row(
+        children: [
+          Expanded(child: Divider(color: AppColors.placeholder, height: 1)),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 7),
+            child: Text(
+              'atau',
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.placeholder),
+            ),
           ),
-        ),
-        Expanded(child: Divider(color: AppColors.placeholder)),
-      ],
+          Expanded(child: Divider(color: AppColors.placeholder, height: 1)),
+        ],
+      ),
     );
   }
 }

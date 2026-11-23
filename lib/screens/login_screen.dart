@@ -3,6 +3,7 @@ import 'register_screen.dart';
 import '../core/app_icons.dart';
 import '../core/theme/app_colors.dart';
 import '../widgets/app_text_field.dart';
+import '../widgets/auth_widgets.dart';
 import '../widgets/primary_button.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -12,6 +13,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        top: false,
         child: LayoutBuilder(
           builder: (context, constraints) => SingleChildScrollView(
             child: ConstrainedBox(
@@ -22,24 +24,10 @@ class LoginScreen extends StatelessWidget {
                       horizontal: AppSpacing.pageMargin),
                   child: Column(
                     children: [
-                      const SizedBox(height: 40),
-                      Image.asset('assets/images/logo.png', height: 160),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'Selamat datang!',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black),
-                      ),
-                      const SizedBox(height: 6),
-                      const Text(
-                        'Masukkan akunmu untuk melanjutkan',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.grey),
+                      const AuthHeader(
+                        title: 'Selamat datang!',
+                        subtitle: 'Masukkan akunmu untuk melanjutkan',
+                        subtitleWidth: 316,
                       ),
                       const SizedBox(height: 24),
                       AppTextField(
@@ -48,18 +36,20 @@ class LoginScreen extends StatelessWidget {
                         keyboardType: TextInputType.emailAddress,
                         prefix: svgIcon('sms', color: AppColors.primary),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 10),
                       AppTextField(
                         label: 'Password',
                         hint: 'Masukkan password',
                         obscure: true,
                         prefix: svgIcon('lock', color: AppColors.placeholder),
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 12),
                       Align(
                         alignment: Alignment.centerRight,
                         child: InkWell(
-                          onTap: () {}, 
+                          onTap: () {
+                            // TODO: ke layar lupa password
+                          },
                           child: const Text(
                             'Lupa password?',
                             style: TextStyle(
@@ -69,28 +59,11 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 12),
                       PrimaryButton(label: 'Masuk', onPressed: () {}),
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          const Expanded(
-                              child: Divider(color: AppColors.placeholder)),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            child: Text(
-                              'atau',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.placeholder),
-                            ),
-                          ),
-                          const Expanded(
-                              child: Divider(color: AppColors.placeholder)),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 2),
+                      const OrDivider(),
+                      const SizedBox(height: 6),
                       PrimaryButton(
                         label: 'Masuk dengan google',
                         outlined: true,
@@ -98,33 +71,16 @@ class LoginScreen extends StatelessWidget {
                         onPressed: () {},
                       ),
                       const Spacer(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'Belum punya akun? ',
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.grey),
-                          ),
-                                                    InkWell(
-                            onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => const RegisterScreen()),
-                            ),
-                            child: const Text(
-                              'Daftar dulu',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.primary),
-                            ),
-                          ),
-                        ],
+                      AuthFooter(
+                        question: 'Belum punya akun?',
+                        action: 'Daftar dulu',
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const RegisterScreen()),
+                        ),
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 37),
                     ],
                   ),
                 ),

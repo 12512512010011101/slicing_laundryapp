@@ -27,7 +27,10 @@ class AppTextField extends StatelessWidget {
         Text(
           label,
           style: const TextStyle(
-              fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.grey),
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: AppColors.grey,
+          ),
         ),
         const SizedBox(height: 5),
         SizedBox(
@@ -42,11 +45,25 @@ class AppTextField extends StatelessWidget {
               hintText: hint,
               prefixIcon: prefix == null
                   ? null
-                  : Padding(
-                      padding: const EdgeInsets.only(left: 14, right: 10),
-                      child: prefix,
+                  : SizedBox(
+                      width: 48,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 24),
+                          child: SizedBox(
+                            width: 18,
+                            height: 18,
+                            child: FittedBox(child: prefix),
+                          ),
+                        ),
+                      ),
                     ),
-              prefixIconConstraints: const BoxConstraints(minWidth: 46),
+              prefixIconConstraints: const BoxConstraints(
+                minWidth: 48,
+                maxWidth: 48,
+                minHeight: 44,
+              ),
             ),
           ),
         ),

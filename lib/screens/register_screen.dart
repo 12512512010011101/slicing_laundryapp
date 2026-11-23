@@ -12,6 +12,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        top: false,
         child: LayoutBuilder(
           builder: (context, constraints) => SingleChildScrollView(
             child: ConstrainedBox(
@@ -19,13 +20,13 @@ class RegisterScreen extends StatelessWidget {
               child: IntrinsicHeight(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.pageMargin),
+                    horizontal: AppSpacing.pageMargin,
+                  ),
                   child: Column(
                     children: [
                       const AuthHeader(
                         title: 'Buat akun baru',
                         subtitle: 'Daftar gratis dan mulai pesan laundry',
-                        logoHeight: 100,
                       ),
                       AppTextField(
                         label: 'Email',
@@ -33,32 +34,32 @@ class RegisterScreen extends StatelessWidget {
                         keyboardType: TextInputType.emailAddress,
                         prefix: svgIcon('sms', color: AppColors.primary),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 10),
                       AppTextField(
                         label: 'Nomor HP',
                         hint: '+62 853-0110-0011',
                         keyboardType: TextInputType.phone,
                         prefix: svgIcon('call', color: AppColors.placeholder),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 10),
                       AppTextField(
                         label: 'Password',
                         hint: 'Masukkan password',
                         obscure: true,
                         prefix: svgIcon('lock', color: AppColors.placeholder),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 10),
                       AppTextField(
                         label: 'Konfirmasi password',
                         hint: 'Konfirmasi password',
                         obscure: true,
                         prefix: svgIcon('lock', color: AppColors.placeholder),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 12),
                       PrimaryButton(label: 'Daftar sekarang', onPressed: () {}),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 2),
                       const OrDivider(),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 6),
                       PrimaryButton(
                         label: 'Daftar dengan google',
                         outlined: true,
@@ -71,7 +72,7 @@ class RegisterScreen extends StatelessWidget {
                         action: 'Masuk',
                         onTap: () => Navigator.pop(context),
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 37),
                     ],
                   ),
                 ),
