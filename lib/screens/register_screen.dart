@@ -4,11 +4,13 @@ import '../core/theme/app_colors.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/auth_widgets.dart';
 import '../widgets/primary_button.dart';
+import 'otp_screen.dart';
+import 'account_created_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
-    @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -19,7 +21,8 @@ class RegisterScreen extends StatelessWidget {
               hasScrollBody: false,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.pageMargin),
+                  horizontal: AppSpacing.pageMargin,
+                ),
                 child: Column(
                   children: [
                     const AuthHeader(
@@ -54,7 +57,17 @@ class RegisterScreen extends StatelessWidget {
                       prefix: svgIcon('lock', color: AppColors.placeholder),
                     ),
                     const SizedBox(height: 12),
-                    PrimaryButton(label: 'Daftar sekarang', onPressed: () {}),
+                    PrimaryButton(
+                      label: 'Daftar sekarang',
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => OtpScreen(
+                            nextBuilder: (_) => const AccountCreatedScreen(),
+                          ),
+                        ),
+                      ),
+                    ),
                     const SizedBox(height: 2),
                     const OrDivider(),
                     const SizedBox(height: 6),

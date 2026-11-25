@@ -2,14 +2,18 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'new_password_screen.dart';
 import '../core/theme/app_colors.dart';
 import '../widgets/auth_widgets.dart';
 import '../widgets/primary_button.dart';
 
 class OtpScreen extends StatefulWidget {
   final String phone;
-  const OtpScreen({super.key, this.phone = '+62 853-0110-0011'});
+  final WidgetBuilder nextBuilder; // layar tujuan setelah verifikasi
+  const OtpScreen({
+    super.key,
+    required this.nextBuilder,
+    this.phone = '+62 853-0110-0011',
+  });
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -141,8 +145,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       label: 'Verifikasi',
                       onPressed: () => Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (_) => const NewPasswordScreen()),
+                        MaterialPageRoute(builder: widget.nextBuilder),
                       ),
                     ),
                     const Spacer(),
