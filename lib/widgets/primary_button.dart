@@ -15,13 +15,20 @@ class PrimaryButton extends StatelessWidget {
     this.outlined = false,
   });
 
+  static const _labelStyle = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
+
   @override
   Widget build(BuildContext context) {
+    final text = Text(label, style: _labelStyle);
     final child = icon == null
-        ? Text(label)
+        ? text
         : Row(
             mainAxisSize: MainAxisSize.min,
-            children: [icon!, const SizedBox(width: 8), Text(label)],
+            children: [icon!, const SizedBox(width: 12), text],
           );
 
     if (outlined) {
@@ -35,7 +42,7 @@ class PrimaryButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSpacing.radius),
           ),
-          textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+          textStyle: _labelStyle,
         ),
         child: child,
       );
