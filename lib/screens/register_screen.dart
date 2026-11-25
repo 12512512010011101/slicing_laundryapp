@@ -28,7 +28,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                     AppTextField(
                       label: 'Email',
-                      hint: 'budisanto@gmail.com',
+                      hint: 'Masukkan email',
                       keyboardType: TextInputType.emailAddress,
                       prefix: svgIcon('sms', color: AppColors.primary),
                     ),

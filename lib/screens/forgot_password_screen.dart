@@ -48,7 +48,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               const SizedBox(height: 18),
               AppTextField(
                 label: 'Email',
-                hint: 'budisanto@gmail.com',
+                hint: 'Masukkan email',
                 keyboardType: TextInputType.emailAddress,
                 prefix: svgIcon('sms', color: AppColors.primary),
               ),

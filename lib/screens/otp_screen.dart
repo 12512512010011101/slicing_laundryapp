@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'new_password_screen.dart';
 import '../core/theme/app_colors.dart';
 import '../widgets/auth_widgets.dart';
 import '../widgets/primary_button.dart';
@@ -92,91 +93,89 @@ class _OtpScreenState extends State<OtpScreen> {
     return Scaffold(
       body: SafeArea(
         top: false,
-        child: LayoutBuilder(
-          builder: (context, constraints) => SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraints.maxHeight),
-              child: IntrinsicHeight(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.pageMargin),
-                  child: Column(
-                    children: [
-                      const AuthBackButton(),
-                      const SizedBox(height: 76),
-                      SvgPicture.asset('assets/icons/phone_chat.svg',
-                          width: 49, height: 56),
-                      const SizedBox(height: 35),
-                      const Text(
-                        'Cek HP anda!',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black),
-                      ),
-                      const SizedBox(height: 8),
-                      Text.rich(
-                        TextSpan(
-                          text: 'OTP yang dikirim ke ',
-                          children: [
-                            TextSpan(
-                              text: widget.phone,
-                              style: const TextStyle(color: AppColors.primary),
-                            ),
-                          ],
-                        ),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.grey),
-                      ),
-                      const SizedBox(height: 17),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: List.generate(6, _box),
-                      ),
-                      const SizedBox(height: 20),
-                      PrimaryButton(label: 'Verifikasi', onPressed: () {}),
-                      const SizedBox(height: 26),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+        child: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.pageMargin),
+                child: Column(
+                  children: [
+                    const AuthBackButton(),
+                    const SizedBox(height: 96),
+                    SvgPicture.asset('assets/icons/phone_chat.svg',
+                        width: 49, height: 56),
+                    const SizedBox(height: 15),
+                    const Text(
+                      'Cek HP anda!',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black),
+                    ),
+                    const SizedBox(height: 3),
+                    Text.rich(
+                      TextSpan(
+                        text: 'OTP yang dikirim ke ',
                         children: [
-                          const Text(
-                            'Tidak dapat kode? ',
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0x73000000)),
-                          ),
-                          InkWell(
-                            onTap: _seconds == 0 ? _startTimer : null,
-                            child: Text(
-                              _seconds == 0
-                                  ? 'Kirim ulang'
-                                  : 'Kirim ulang (${_seconds}s)',
-                              style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.primary),
-                            ),
+                          TextSpan(
+                            text: widget.phone,
+                            style: const TextStyle(color: AppColors.primary),
                           ),
                         ],
                       ),
-                      const Spacer(),
-                      AuthFooter(
-                        question: 'Sudah punya akun?',
-                        action: 'Masuk',
-                        onTap: () =>
-                            Navigator.popUntil(context, (r) => r.isFirst),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.grey),
+                    ),
+                    const SizedBox(height: 37),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: List.generate(6, _box),
+                    ),
+                    const SizedBox(height: 33),
+                    PrimaryButton(
+                      label: 'Verifikasi',
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => const NewPasswordScreen()),
                       ),
-                      const SizedBox(height: 37),
-                    ],
-                  ),
+                    ),
+                    const Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Tidak dapat kode? ',
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0x73000000)),
+                        ),
+                        InkWell(
+                          onTap: _seconds == 0 ? _startTimer : null,
+                          child: Text(
+                            _seconds == 0
+                                ? 'Kirim ulang'
+                                : 'Kirim ulang (${_seconds}s)',
+                            style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.primary),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 37),
+                  ],
                 ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );
