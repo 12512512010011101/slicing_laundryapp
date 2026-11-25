@@ -6,6 +6,7 @@ import '../core/theme/app_colors.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/auth_widgets.dart';
 import '../widgets/primary_button.dart';
+import 'new_password_screen.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
@@ -16,21 +17,26 @@ class ForgotPasswordScreen extends StatelessWidget {
       body: SafeArea(
         top: false,
         child: SingleChildScrollView(
-          padding:
-              const EdgeInsets.symmetric(horizontal: AppSpacing.pageMargin),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.pageMargin,
+          ),
           child: Column(
             children: [
               const AuthBackButton(),
               const SizedBox(height: 130),
-              SvgPicture.asset('assets/icons/mail_big.svg',
-                  width: 49, height: 34),
+              SvgPicture.asset(
+                'assets/icons/mail_big.svg',
+                width: 49,
+                height: 34,
+              ),
               const SizedBox(height: 11),
               const Text(
                 'Lupa password?',
                 style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.black),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black,
+                ),
               ),
               const SizedBox(height: 3),
               const SizedBox(
@@ -39,16 +45,17 @@ class ForgotPasswordScreen extends StatelessWidget {
                   'Jangan khawatir, kami akan memberikan intruksi reset',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 16,
-                      height: 1.3,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0x73000000)),
+                    fontSize: 16,
+                    height: 1.3,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0x73000000),
+                  ),
                 ),
               ),
               const SizedBox(height: 18),
               AppTextField(
                 label: 'Email',
-                hint: 'budisanto@gmail.com',
+                hint: 'Masukkan email',
                 keyboardType: TextInputType.emailAddress,
                 prefix: svgIcon('sms', color: AppColors.primary),
               ),
@@ -57,7 +64,11 @@ class ForgotPasswordScreen extends StatelessWidget {
                 label: 'Reset password',
                 onPressed: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const OtpScreen()),
+                  MaterialPageRoute(
+                    builder: (_) => OtpScreen(
+                      nextBuilder: (_) => const NewPasswordScreen(),
+                    ),
+                  ),
                 ),
               ),
             ],
