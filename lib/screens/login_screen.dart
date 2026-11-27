@@ -6,6 +6,7 @@ import '../widgets/app_text_field.dart';
 import '../widgets/auth_widgets.dart';
 import '../widgets/primary_button.dart';
 import 'forgot_password_screen.dart';
+import 'main_shell.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -66,15 +67,13 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 12),
-                      PrimaryButton(label: 'Masuk', onPressed: () {}),
-                      const SizedBox(height: 2),
-                      const OrDivider(),
-                      const SizedBox(height: 6),
                       PrimaryButton(
-                        label: 'Masuk dengan google',
-                        outlined: true,
-                        icon: svgIcon('google', size: 18),
-                        onPressed: () {},
+                        label: 'Masuk',
+                        onPressed: () => Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (_) => const MainShell()),
+                          (route) => false,
+                        ),
                       ),
                       const Spacer(),
                       AuthFooter(

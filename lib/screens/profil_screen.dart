@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../core/theme/app_colors.dart';
 import '../widgets/abs.dart';
+import 'edit_profil_screen.dart';
+import 'alamat_screen.dart';
+import 'keamanan_screen.dart';
 
 class ProfilScreen extends StatelessWidget {
   const ProfilScreen({super.key});
@@ -32,14 +35,14 @@ class ProfilScreen extends StatelessWidget {
         ),
       );
 
-  Widget _menu(double top, Widget icon, String title, String sub, {double textLeft = 61.3}) => Positioned(
+  Widget _menu(BuildContext context, double top, Widget icon, String title, String sub, Widget Function()? page, {double textLeft = 61.3}) => Positioned(
         left: 22.5,
         top: top,
         width: 315,
         height: 55,
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
-          onTap: () {}, // TODO: buka layar tujuan
+          onTap: page == null ? null : () => Navigator.push(context, MaterialPageRoute(builder: (_) => page())),
           child: Ink(
             decoration: cardBox(),
             child: Stack(
@@ -107,11 +110,11 @@ class ProfilScreen extends StatelessWidget {
           ),
         ),
         at(25.4, 345, Text('Akun', style: ts(14, FontWeight.w600, _grey))),
-        _menu(359.5, ico('user', 22, 22), 'Edit Profil', 'Nama foto, nomor HP'),
-        _menu(425.5, ico('pin', 20, 23), 'Alamat Tersimpan', 'Jl. Merdeka No. 12'),
+        _menu(context, 359.5, ico('user', 22, 22), 'Edit Profil', 'Nama foto, nomor HP', () => const EditProfilScreen()),
+        _menu(context, 425.5, ico('pin', 20, 23), 'Alamat Tersimpan', 'Jl. Merdeka No. 12', () => const AlamatScreen()),
         at(23, 506.5, Text('Preferensi', style: ts(14, FontWeight.w600, _grey))),
-        _menu(521.5, ico('bell_p', 19, 20), 'Notifikasi', 'Status pesanan, promo', textLeft: 59.3),
-        _menu(587.5, ico('shield', 20, 24), 'Keamanan', 'PIN, sidik jari'),
+        _menu(context, 521.5, ico('bell_p', 19, 20), 'Notifikasi', 'Status pesanan, promo', null, textLeft: 59.3), // TODO: layar Notifikasi
+        _menu(context, 587.5, ico('shield', 20, 24), 'Keamanan', 'PIN, sidik jari', () => const KeamananScreen()),
         Positioned(
           left: 0,
           right: 0,
